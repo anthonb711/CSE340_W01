@@ -16,16 +16,21 @@ const static = require("./routes/static");
 /* ***********************
  * View Engine and Templates
  *************************/
-app.
-    set("view engine", "ejs")
-    use(expressLayouts)
-    set("layout", "./layouts/layouts"); // not at views root
+app
+    .set("view engine", "ejs")
+    .use(expressLayouts)
+    .set("layout", "./layouts/layouts"); // not at views root
 
 
 /* ***********************
  * Routes
  *************************/
-app.use(static);
+app
+.use(static)
+.get("/", (req, res) => {
+   res.render("index", {title: "HOME"});
+});
+
 
 /* ***********************
  * Local Server Information
