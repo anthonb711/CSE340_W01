@@ -5,8 +5,10 @@
 /* ***********************
  * Require Statements
  *************************/
-const express = require("express")
 const env = require("dotenv").config()
+const express = require("express")
+
+
 const app = express()
 const static = require("./routes/static")
 
