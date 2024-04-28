@@ -1,10 +1,5 @@
-@media only screen and (min-width: 601px){
-body{
-   background-color: pink;
-   }
-}
 
-/******* Mobile Styles < 601px ******************/
+/******* Mobile Styles < 768px ******************/
 body {
    display: flex;
    flex-direction: column;
@@ -16,11 +11,13 @@ header#top-header {
    display: flex;
    justify-content: space-between;
    align-items: center;
+
 }
 #top-header span,
 #tools {
    display: inline-block;
    margin-right: 10px;
+   margin-top: 3%;
 }
 #top-header span {
    font-family: Arial, Helvetica, sans-serif;
@@ -29,12 +26,15 @@ header#top-header {
 }
 #tools{
    margin-right: 0;
-   margin-top: 0;
    margin-bottom: auto;
 }
 a.no-under {
+   margin-right: 5px;
+   padding-top: 15px;
    text-decoration: none;
    color: black;
+   font-family: Arial, Helvetica, sans-serif;
+   
 }
 nav ul{
    background-color: black;
@@ -63,10 +63,9 @@ nav li {
 #overlap {
    position: absolute;
    width: 25%;
-   background-color: rgba(255, 255, 255, 0.832);
+   background-color: rgba(255, 255, 255, 0.75);
    transform: translate(-55%, -125%);
    color: rgb(33, 183, 237);
-   
 }
 #overlap p {
    margin: 0;
@@ -74,12 +73,11 @@ nav li {
 .p-color {
    text-align: center;
    width: 85%;
-   height: 20px;
-   background-color: rgb(79, 173, 207);
+   height: 10%;
+   background-color: rgb(33, 183, 237);
    color: black;
    text-align: center;
    font-weight: bolder;
-
 }
 #reviews {
    margin-bottom: 0;
@@ -97,6 +95,9 @@ nav li {
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
+}
+#upgrades h3 {
+   width: 100%;
 }
 .upgrade-img{
    break-inside: avoid;
@@ -124,6 +125,81 @@ nav li {
 footer {
    margin: 10px;
    font-size: smaller;
+}
+/***********larger screens > 768 ****************/
+@media only screen and (min-width: 768px) {
+   body {
+      margin-left: 12%;
+      background-image:
+         linear-gradient(45deg, #000000 25%, transparent 25%),
+         linear-gradient(135deg, #000000 25%, transparent 25%),
+         linear-gradient(45deg, transparent 75%, #000000 75%),
+         linear-gradient(135deg, transparent 75%, #000000 75%);
+      background-size: 100px 100px;
+      background-position: 0 0, 50px 0, 50px -50px, 0px 50px;
+      justify-content: center;
+   }
+   #wrapper {
+      border: 5px rgb(33, 183, 237) solid;
+      border-radius: 1%;
+      background-color: white;
+      min-height: 90vh;
+      min-width: 75vw;
+   }
+   #top-header span,
+   #tools {
+      display: inline-block;
+      margin: 3% 3%;
+   }
+   nav ul {
+      margin: 0 3%;
+   }
+   #car-div {
+      margin-bottom: 15%;
+   }
+   #car-div img {
+      height: auto;
+      width: 90%
+   }
+   #overlap {
+      position: absolute;
+      max-width: fit-content;
+      height: auto;
+      background-color: rgba(255, 255, 255, 0.832);
+      transform: translate(-15%, -125%);
+      color: rgb(33, 183, 237);
+      font-size: large;
+   }
+   #overlap p {
+       margin-bottom: 5px;
+   }
+   .p-color {
+      margin-top: 20px;
+      text-align: center;
+      width: 80%;
+      height: 10%;
+      background-color: rgb(33, 183, 237);
+      color: black;
+      text-align: center;
+      font-weight: bolder;
+   }
+   #bottom-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-left: 3%;
+   }
+   #upgrades {
+      order: -1;
+      width: 45%;
+
+   }
+   #reviews {
+      width: 45%;
+   }
+   #reviews li {
+      margin-bottom: 8%;
+   }
 }
 /******* Change Box Model ***************/
 *,

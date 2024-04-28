@@ -1,9 +1,13 @@
 
-   <div>
+   <div class="container">
+      <div>
       <h3>Welcome to CSE Motors!</h3>
    </div>
    <div id="car-div">
-      <img src="images/vehicles/delorean-tn.jpg" alt="delorean">
+      <picture>
+         <source media="(min-width: 768px)" srcset="images/vehicles/delorean.jpg">
+        <img src="images/vehicles/delorean-tn.jpg" alt="delorean">
+      </picture>
       <div id="overlap">
          <span>DMC Delorean</span>
          <p>3 Cup holders</p>
@@ -12,6 +16,7 @@
          <p class="p-color">Own Today</p>
       </div>
    </div>
+   <div id="bottom-container">
    <div id="reviews">
       <h3>DMC Delorean Reviews</h3>
       <ul id="review-list">
@@ -22,8 +27,8 @@
          <li>"80's livin and I love it!" (5/5)</li>
       </ul>
    </div>
-   <h3> Delorean Upgrades</h3>
    <div id="upgrades">
+      <h3> Delorean Upgrades</h3>
       <div class="upgrade-img">
          <div class="img-box">
             <img src="images/upgrades/flux-cap.png" alt="flux-cap">
@@ -48,4 +53,6 @@
          </div>
          <a>Hub Caps</a>
       </div>
+   </div>
+   </div>
    </div>
