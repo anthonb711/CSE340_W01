@@ -65,7 +65,7 @@ nav li {
    width: 25%;
    background-color: rgba(255, 255, 255, 0.75);
    transform: translate(-55%, -125%);
-   color: rgb(33, 183, 237);
+   color: rgb(161, 26, 26);
 }
 #overlap p {
    margin: 0;
@@ -74,7 +74,7 @@ nav li {
    text-align: center;
    width: 85%;
    height: 10%;
-   background-color: rgb(33, 183, 237);
+   background-color: rgb(161, 26, 26);
    color: black;
    text-align: center;
    font-weight: bolder;
@@ -120,7 +120,7 @@ nav li {
 .img-box {
    height: 85%;
    width: 100%;
-   background-color: rgb(79, 173, 207);
+   background-color: rgb(161, 26, 26);
 }
 footer {
    margin: 10px;
@@ -140,11 +140,14 @@ footer {
       justify-content: center;
    }
    #wrapper {
-      border: 5px rgb(33, 183, 237) solid;
+      border: 5px rgb(161, 26, 26) solid;
       border-radius: 1%;
       background-color: white;
       min-height: 90vh;
       min-width: 75vw;
+   }
+   h1 {
+      margin-left: 3%;
    }
    #top-header span,
    #tools {
@@ -167,7 +170,7 @@ footer {
       height: auto;
       background-color: rgba(255, 255, 255, 0.832);
       transform: translate(-15%, -125%);
-      color: rgb(33, 183, 237);
+      color: rgb(161, 26, 26);
       font-size: large;
    }
    #overlap p {
@@ -178,7 +181,7 @@ footer {
       text-align: center;
       width: 80%;
       height: 10%;
-      background-color: rgb(33, 183, 237);
+      background-color: rgb(161, 26, 26);
       color: black;
       text-align: center;
       font-weight: bolder;
