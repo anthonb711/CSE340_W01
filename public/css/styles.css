@@ -1,3 +1,130 @@
+@media only screen and (min-width: 601px){
+body{
+   background-color: pink;
+   }
+}
+
+/******* Mobile Styles < 601px ******************/
+body {
+   display: flex;
+   flex-direction: column;
+   width: 60%;
+   margin-left: auto;
+   margin-right: auto;
+}
+header#top-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+#top-header span,
+#tools {
+   display: inline-block;
+   margin-right: 10px;
+}
+#top-header span {
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bolder;
+   font-size: x-large;
+}
+#tools{
+   margin-right: 0;
+   margin-top: 0;
+   margin-bottom: auto;
+}
+a.no-under {
+   text-decoration: none;
+   color: black;
+}
+nav ul{
+   background-color: black;
+   list-style-type: none;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0;
+   height: 40px;
+}
+nav li {
+   padding: 0 3%;
+   color: white;
+}
+#car-div {
+   max-width: fit-content;
+   margin: auto;
+   padding-left: 30px;
+}
+#car-div span{
+   margin-top: 0;
+   margin-bottom: 0;
+   font-weight: bolder;
+   font-size: larger;
+}
+#overlap {
+   position: absolute;
+   width: 25%;
+   background-color: rgba(255, 255, 255, 0.832);
+   transform: translate(-55%, -125%);
+   color: rgb(33, 183, 237);
+   
+}
+#overlap p {
+   margin: 0;
+}
+.p-color {
+   text-align: center;
+   width: 85%;
+   height: 20px;
+   background-color: rgb(79, 173, 207);
+   color: black;
+   text-align: center;
+   font-weight: bolder;
+
+}
+#reviews {
+   margin-bottom: 0;
+}
+#review-list{
+   margin-left: 20px;
+   margin-top: 0;
+   padding: 0;
+   font-size: smaller;
+}
+#review-list li{
+   padding-bottom: 2%;
+}
+#upgrades{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+.upgrade-img{
+   break-inside: avoid;
+   width: 48%;
+   margin-bottom: 10px;
+   break-inside: avoid;
+   text-align: center;
+   font-size: smaller;
+   text-decoration: underline;
+}
+.upgrade-img img{
+   height: auto;
+   max-width: 50%;
+   padding-top: 5%;
+   padding-bottom: 0%
+}
+.upgrade-img a {
+   display: block;
+}
+.img-box {
+   height: 85%;
+   width: 100%;
+   background-color: rgb(79, 173, 207);
+}
+footer {
+   margin: 10px;
+   font-size: smaller;
+}
 /******* Change Box Model ***************/
 *,
 *:before,
