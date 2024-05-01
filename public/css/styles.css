@@ -120,6 +120,7 @@ nav li {
    height: 85%;
    width: 100%;
    background-color: rgb(161, 26, 26);
+   text-decoration: none;
 }
 footer {
    margin: 10px;
