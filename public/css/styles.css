@@ -61,9 +61,10 @@ nav a {
    margin-bottom: 0;
    font-weight: bolder;
    font-size: larger;
+   
 }
 #overlap {
-   position: absolute;
+   position: fixed;
    width: 25%;
    background-color: rgba(255, 255, 255, 0.75);
    transform: translate(-55%, -125%);
@@ -164,12 +165,13 @@ footer {
    }
    #car-div img {
       height: auto;
-      width: 90%
+      width: 40vw
    }
    #overlap {
-      position: absolute;
-      max-width: fit-content;
+      position: fixed;
+      width: 20vw;
       height: auto;
+      max-height: 30vh;
       background-color: rgba(255, 255, 255, 0.832);
       transform: translate(-15%, -125%);
       color: rgb(161, 26, 26);
