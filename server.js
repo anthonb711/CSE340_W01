@@ -29,16 +29,22 @@ app
  * Routes
  *************************/
 app.use(static);
-// Index Rout
+// Index Route
 app.get("/", Util.handleErrors(baseController.buildHome));
 // Inventory Routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute);
+app.use("/inv", Util.handleErrors(inventoryRoute.make500));
 
+
+app.use(async (req, res, next) => {
+  next({status: 500, message: 'Houston we Have a Problem.'})
+})
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'You look lost.'})
 })
+
 
 /* ***********************
 * Express Error Handler

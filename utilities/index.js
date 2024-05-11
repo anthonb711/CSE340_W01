@@ -57,6 +57,44 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+
+
+/* **************************************
+* Build the inventory Detail view HTML
+* ************************************ */
+Util.buildDetailCard = async function(data){
+  let grid
+  if(data.length > 0){
+    const vehicle = data[0];
+    console.log(data);
+    grid = '<div id="detailContainer"> <img id="detailImg" src="'
+      + vehicle.inv_image
+      + '" alt="Image of '
+      + vehicle.inv_make + ' '
+      + vehicle.inv_model 
+      + '">'
+    grid += '<h1>' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details' + '</h1>';
+    grid += '<div class="detailCard"><span><strong>Price: $' 
+      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</strong></span></div>'
+    grid += '<div class="detailCard><span class="heavyLight"><strong>Description: </strong>'
+         + vehicle.inv_description + '</span></div>'
+    grid += '<div class="detailCard><span class="heavyLight"><strong>Color: </strong>'
+         + vehicle.inv_color + '</span></div>'
+    grid += '<div class="detailCard><span class="heavyLight"><strong>Miles: </strong>'
+         + new Intl.NumberFormat ('en-US').format(vehicle.inv_miles) + '</span></div>'
+    grid += '</div>'
+
+
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+  }
+  return grid
+}
+
+
+
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
