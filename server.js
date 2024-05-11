@@ -31,10 +31,16 @@ app
 app.use(static);
 // Index Route
 app.get("/", Util.handleErrors(baseController.buildHome));
+
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+// File Not Found Route - must be last route in list
+
 // Inventory Routes
 app.use("/inv", inventoryRoute);
-app.use("/inv", Util.handleErrors(inventoryRoute.make500));
+//app.get("/inv", Util.handleErrors(inventoryRoute.make500));
 
+// rid of nusance 404 error
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -50,6 +56,7 @@ app.use(async (err, req, res, next) => {
   let nav = await Util.getNav();
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   if(err.status == 404) {message = err.message} else {message = "Oh no! There was a crash. Maybe try a different route?"}
+
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message: err.message,

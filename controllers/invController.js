@@ -41,9 +41,16 @@ invCont.buildByDetailId = async function (req, res, next) {
 /* *******************************
  * Build inventory by classification view
  ****************************** */
-invCont.make500 = function (err, req, res, next) {
- throw new Error('Throw makes it go boom!');
+invCont.make500 = function (req, res, next) {
+  console.log("THIS IS FROM MAKE 500");
+  const make500Er = new Error('Houston, we have a problem!');
+  make500Er.status = 500;
+
+  throw make500Er;
+
 }
+
+module.exports = invCont;
   // const forcedError= req.params.errorId
   // try { 
   //   const data = await invModel.getInventoryByDetail(forcedError)
