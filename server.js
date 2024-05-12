@@ -39,9 +39,6 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.use("/inv", inventoryRoute);
 //app.get("/inv", Util.handleErrors(inventoryRoute.make500));
 
-// rid of nusance 404 error
-app.get('/favicon.ico', (req, res) => res.status(204).end());
-
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'You look lost.'})
