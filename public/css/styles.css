@@ -51,6 +51,7 @@ nav a {
    color: white;
    text-decoration: none;
 }
+/******* HOME PAGE ******************/
 #car-div {
    max-width: fit-content;
    margin: auto;
@@ -125,6 +126,79 @@ nav a {
    background-color: rgb(161, 26, 26);
    text-decoration: none;
 }
+/******* By Category ******************/
+#in-display {
+  max-width: fit-content;
+}
+.namePrice {
+  display:flexbox;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.namePrice hr {
+  height: 5px;
+  color: black;
+  background-color: black;
+}
+
+.namePrice h2{
+ text-align: center;
+}
+
+.namePrice span {
+  font-size: x-large;
+  font-weight: bolder;
+  margin-left: 33%;
+  margin-right: auto;
+}
+
+#inv-display li {
+  margin: 10px;
+  min-width: fit-content;
+  height: auto;
+  border-radius: 10px;
+  border: 5px rgb(161, 26, 26) solid;
+  list-style-type: none;
+}
+
+#inv-display img {
+ width: 100%;
+ height: auto;
+ margin-top: 10px;
+}
+
+/******* By Details ******************/
+#detailContainer {
+  border:3px rgb(161, 26, 26) solid;
+}
+#detailContainer img {
+  display: flex;
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  background-color: #e4e4e4;
+  padding:10px;
+  margin: 10px;
+  font-size: x-large;
+}
+
+.lightCard {
+  padding: 10px;
+  font-size: x-large;
+  text-align: justify;
+}
+.heavyLight {
+  padding: 10px;
+  font-size: large;
+}
+
+.heavyLight strong {
+  font-size: x-large;
+}
+
 footer {
    margin: 10px;
    font-size: smaller;
@@ -202,6 +276,64 @@ footer {
    #reviews li {
       margin-bottom: 8%;
    }
+/******* By Category ******************/
+#inv-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#inv-display li {
+  width: 250px;
+  margin-bottom: 10px;
+}
+.namePrice h2 {
+  text-align: center;
+  font-size: medium;
+}
+/******* By Details ******************/
+#detailContainer {
+  display: grid;
+  height: auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 60px);
+  grid-gap: 10px;
+ 
+}
+#detailContainer img {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 5;
+}
+
+#details {
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 1;
+  max-height: fit-content;
+  align-content: center;
+}
+#price {
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 1;
+  align-content: center;
+  max-height: 150px;
+}
+#descrip {
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 2;
+}
+#color {
+  grid-column: 2 / span 2;
+  grid-row: 5 / span 1;
+  align-content: center;
+}
+#miles {
+  grid-column: 2 / span 2;
+  grid-row: 6 / span 1;
+  align-content: center;
+}
+.lightCard{
+  background-color: white;
+}
+
 }
 /******* Change Box Model ***************/
 *,

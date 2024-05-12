@@ -73,14 +73,14 @@ Util.buildDetailCard = async function(data){
       + vehicle.inv_make + ' '
       + vehicle.inv_model 
       + '">'
-    grid += '<h1>' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details' + '</h1>';
-    grid += '<div class="detailCard"><span><strong>Price: $' 
+    grid += '<h2 id="details">' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details' + '</h2>';
+    grid += '<div id="price" class="card"><span><strong>Price: $' 
       + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</strong></span></div>'
-    grid += '<div class="detailCard"><span class="heavyLight"><strong>Description: </strong>'
+    grid += '<div id="descrip" class="lightCard"><span class="heavyLight"><strong>Description: </strong>'
          + vehicle.inv_description + '</span></div>'
-    grid += '<div class="detailCard"><span class="heavyLight"><strong>Color: </strong>'
+    grid += '<div id="color" class="card"><span><strong>Color: </strong>'
          + vehicle.inv_color + '</span></div>'
-    grid += '<div class="detailCard"><span class="heavyLight"><strong>Miles: </strong>'
+    grid += '<div id="miles" class="lightCard"><span><strong>Miles: </strong>'
          + new Intl.NumberFormat ('en-US').format(vehicle.inv_miles) + '</span></div>'
     grid += '</div>'
 
