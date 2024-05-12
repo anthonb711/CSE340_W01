@@ -67,9 +67,9 @@ try {
  * Build inventory by classification view
  ****************************** */
 invCont.make500 = function (req, res, next) {
-  console.log("THIS IS FROM MAKE 500");
   const make500Er = new Error();
   make500Er.status = 500;
+  make500Er.message = "Houston we have a problem";
   next(make500Er)
 
 }
