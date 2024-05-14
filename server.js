@@ -12,6 +12,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
+const accountRoute = require("./routes/accountRoute");
 const Util = require("./utilities/index")
 const app = express();
 const static = require("./routes/static");
@@ -61,7 +62,9 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // Inventory Routes
 app.use("/inv", inventoryRoute);
-//app.get("/inv", Util.handleErrors(inventoryRoute.make500));
+
+// Account Routes
+app.use("/account", accountRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
