@@ -31,36 +31,24 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * Build inventory by inventory detail view
  ****************************** */
 invCont.buildByDetailId = async function (req, res, next) {
-try {
-  const detail_id = req.params.detailId
-  const data = await invModel.getInventoryByDetailId(detail_id)
-  const grid = await utilities.buildDetailCard(data)
-  let nav = await utilities.getNav()
-  const titleString = data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
+  try {
+    const detail_id = req.params.detailId
+    const data = await invModel.getInventoryByDetailId(detail_id)
+    const grid = await utilities.buildDetailCard(data)
+    let nav = await utilities.getNav()
+    const titleString = data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
 
-    res.render("./inventory/detail.ejs", {
+      res.render("./inventory/detail.ejs", {
       title: titleString,
-      nav,
-      grid,
-    })
-}catch (error) {
-  error.status = 500;
-  error.message ="Vehicle detail is not avialable at this time"
-  next(error);
-}
-
-
-  const detail_id = req.params.detailId
-  const data = await invModel.getInventoryByDetailId(detail_id)
-  const grid = await utilities.buildDetailCard(data)
-  let nav = await utilities.getNav()
-  const titleString = data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
-
-  res.render("./inventory/detail.ejs", {
-    title: titleString,
-    nav,
-    grid,
-  })
+        nav,
+       grid,
+      })
+    }catch (error) {
+      console.log(error);
+      error.status = 500;
+      error.message ="Vehicle detail is not avialable at this time"
+      next(error);
+    }
 }
 
 /* *******************************
