@@ -16,6 +16,22 @@ const buildLogin = async (req, res, next) => {
   }
 };
 
+const builRegistration = async (req, res, next) => {
+    try {
+    let nav = await Util.getNav();
+    res.render("account/registration", {
+      title: "Register",
+      nav,
+    })
+  }catch (error) {
+  console.error(error);
+  error.status = 500;
+  error.message = "SERVER ERROR"
+  next(error);
+  }
+}
 
-
-module.exports = { buildLogin }
+module.exports = { 
+  buildLogin,
+  builRegistration
+ }

@@ -209,26 +209,29 @@ footer {
 max-width: 100vw;
 height: auto;
 }
-
-#login {
+.required{
+  color: red;
+    font-size: larger;
+}
+#login, #register {
   max-width: 100%;
   background-color: grey;
   border: rgb(161, 26, 26) solid;
   border-radius: 10px;
 }
-#login label{
+#login, #register label{
   font-size: x-large;
   color: white;
   margin-left: 20%;
  
 }
-input {
+#login, #register input {
   border: rgb(161, 26, 26) solid;
   margin-bottom: 10px;
   margin-left: 20%;
   max-width: 75%;
 }
-#loginBtn {
+#login_btn, #register_btn {
   margin-left: 30%;
   margin-top: 10px;
   border-radius: 15px;
@@ -237,16 +240,18 @@ input {
   height: 35px;
 }
 #login span {
-  margin-left: 20%;
+  
   color: white;
-  font-size: larger;
+  font-size: large;
   font-weight: bold;
 }
 #login a {
     color: white;
-      font-size: larger;
+      font-size: large;
       font-weight: bold;
 }
+
+
 
 
 /***********larger screens > 768 ****************/
@@ -380,25 +385,25 @@ input {
   background-color: white;
 }
 /*********** Account Login ****************/
-#loginForm {
+#loginForm, #registerForm {
   max-width: 60vw;
   height: auto;
   margin-left: 35px;
 }
-#login {
+#login, #register {
   min-width: 350px;
   max-width: 55%;
   background-color: grey;
   border: rgb(161, 26, 26) solid;
   border-radius: 10px;
 }
-#login label {
+#login, #register label {
   font-size: x-large;
   color: white;
   margin-left: 20%;
 
 }
-input {
+#login, #register input {
   border: rgb(161, 26, 26) solid;
   margin-bottom: 10px;
   margin-left: 20%;
@@ -407,7 +412,7 @@ input {
 
 }
 
-#loginBtn {
+#login_btn, #register_btn {
   margin-left: 30%;
   margin-top: 10px;
   border-radius: 15px;

@@ -7,12 +7,14 @@
     <%- messages() %>
 <form id="loginForm">
   <fieldset id="login">
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email"><br>
-    <label for="pwd">Password:</label><br>
-    <input type="password" id="pwd" name="pwd"><br>
-    <input type="submit" id="loginBtn" value="Login"><br>
-    <span>No account?<a href="account/registration"> Sign-up</a></span>
+    <label for="account_email">Email:</label><br>
+    <input type="email" id="login_email" name="account_email"
+           required><br>
+    <label for="account_password">Password:</label><br>
+    <input type="password" id="login_pwd" name="account_password"
+           required><br>
+    <input type="submit" id="login_btn" value="Login"><br>
+    <span>No account?<a href="/account/registration"> Sign-up</a></span>
   </fieldset>
 </form>
 
