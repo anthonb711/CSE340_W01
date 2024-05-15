@@ -209,10 +209,7 @@ footer {
 max-width: 100vw;
 height: auto;
 }
-.required{
-  color: red;
-    font-size: larger;
-}
+
 #login, #register {
   max-width: 100%;
   background-color: grey;
