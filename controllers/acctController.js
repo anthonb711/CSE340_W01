@@ -8,6 +8,7 @@ const buildLogin = async (req, res, next) => {
     res.render("account/login", {
       title: "Login",
       nav,
+      errors: null,
     })
   }catch (error) {
   console.error(error);
@@ -23,6 +24,7 @@ const builRegistration = async (req, res, next) => {
     res.render("account/registration", {
       title: "Register",
       nav,
+      errors: null,
     })
   }catch (error) {
   console.error(error);
@@ -60,6 +62,7 @@ async function registerAccount(req, res) {
     res.status(501).render("account/registration", {
       title: "Registration",
       nav,
+      errors: null,
     })
   }
 }
