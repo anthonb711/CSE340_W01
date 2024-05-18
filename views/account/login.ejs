@@ -5,12 +5,22 @@
   <%} else { res.redirect('/'); } %>
 
     <%- messages() %>
-<form id="loginForm">
+    <% if (errors) { %>
+       <ul class="notice">
+      <% errors.array().forEach(error=> { %>
+        <li>
+          <%= error.msg %>
+        </li>
+      <% }) %>
+      </ul>
+    <% } %>
+
+<form id="loginForm" action="/account/login" method="post">
   <fieldset id="login">
-    <label for="account_email">Email:</label><br>
-    <input type="email" id="login_email" name="account_email"
-           required><br>
-    <label for="account_password">Password:</label><br>
+    <label for="accountEmail">Email:</label><br>
+    <input type="email" id="loginEmail" name="account_email"
+           required value="<%= locals.account_email %>"><br>
+    <label for="login_pwd">Password:</label><br>
     <input type="password" id="login_pwd" name="account_password"
            required><br>
     <input type="submit" id="login_btn" value="Login"><br>
