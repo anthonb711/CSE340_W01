@@ -14,7 +14,7 @@ router.get("/registration", Util.handleErrors(acctController.builRegistration))
 router.post("/registration",
 regValidate.registationRules(),
 regValidate.loginRules(),
-regValidate.checkLoginData, Util.handleErrors(acctController.buildLogin),
+
 regValidate.checkRegData, Util.handleErrors(acctController.registerAccount))
 
 // Process the login attempt
