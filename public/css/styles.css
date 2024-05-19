@@ -204,7 +204,7 @@ footer {
    font-size: smaller;
 }
 
-/*********** Account Login ****************/
+/*********** Account Login/Register ****************/
 #loginForm {
 max-width: 100vw;
 height: auto;
@@ -248,7 +248,70 @@ height: auto;
       font-weight: bold;
 }
 
+/*********** Management ****************/
+#managementHead  {
+  text-align: center;
+}
+#manageBtnsContainer {
+  display: grid;
+  justify-content: space-around;
+}
+#manageClassificationBtn {
+  grid-column: 1;
+  grid-row: 1;
+}
+#manageInventoryBtn {
+  grid-column: 2;
+  grid-row: 1;
+}
+.manageBtn {
+  border-radius: 15px;
+  border: rgb(161, 26, 26) solid;
+  width: 150px;
+  height: 35px;
+}
 
+/*********** Inventory Management ****************/
+
+#enterInventory {
+  display: flexbox;
+  background-color: grey;
+  border:  rgb(161, 26, 26) solid;
+  border-radius: 15px;
+
+}
+
+#enterInventory label {
+  display: flex;
+  flex-direction: column;
+    font-size: x-large;
+      color: white;
+      width: 100%;
+      margin: auto;
+}
+
+#enterInventory input,
+#enterInventory textarea,
+#enterInventory select {
+  border: 3px rgb(161, 26, 26) solid;
+    margin-bottom: 10px;
+    width: 100%;
+}
+#enterInventory select {
+  font-size: larger;
+  text-align: center;
+}
+#enterInventory label {
+  font-size: x-large;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+#add-invBtn {
+  border-radius: 15px;
+  font-size: larger;
+  margin-top: 30px;
+}
 
 
 /***********larger screens > 768 ****************/
@@ -428,10 +491,32 @@ height: auto;
   font-size: larger;
   font-weight: bold;
 }
+/*********** Management ****************/
+#manageInventoryHead {
+ text-align:  center;
+}
+.manageBtn {
+  border-radius: 15px;
+  border: rgb(161, 26, 26) solid;
+  width: fit-content;
+  height: 35px;
+  font-size: larger;
+}
+
+/*********** Inventory Mangement ****************/
+
+#enterInventory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 40vw;
+  height: auto;
+  margin: auto;
 }
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  }
 }

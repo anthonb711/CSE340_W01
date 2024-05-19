@@ -70,6 +70,7 @@ invCont.make500 = function (req, res, next) {
 invCont.buildManagement = async function (req, res, next) {
   try {
   let nav = await Util.getNav()
+  
   res.render("./inventory/management.ejs", {
     title: "Inventory Management",
     nav,
@@ -83,27 +84,15 @@ invCont.buildManagement = async function (req, res, next) {
   }
 }
 
+/* *******************************
+ * Build Add Classification view
+ ****************************** */
+
 invCont.buildAddClassification = async function (req, res, next) {
     try {
   let nav = await Util.getNav()
   res.render("inventory/add-classification", {
     title: "Manage Classifications",
-    nav,
-    errors: null,
-  })
-
-  }catch (error) {
-  console.error(error);
-  error.status = 500;
-  next(error);
-  }
-}
-
-invCont.buildAddInventory = async function (req, res, next) {
-    try {
-  let nav = await Util.getNav()
-  res.render("inventory/add-inventory", {
-    title: "Manage Inventory",
     nav,
     errors: null,
   })
@@ -145,5 +134,62 @@ invCont.buildAddInventory = async function (req, res, next) {
   }
 }
 
+/* *******************************
+ * Build Add Inventory view
+ ****************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+    try {
+  let nav = await Util.getNav()
+    let categorySelect = await Util.buildClassificationList()
+  res.render("inventory/add-inventory", {
+    title: "Manage Inventory",
+    nav,
+    categorySelect,
+    errors: null,
+  })
+
+  }catch (error) {
+  console.error(error);
+  error.status = 500;
+  next(error);
+  }
+}
+
+/* ****************************************
+*  Process Add Inventory
+* *************************************** */
+ invCont.addInventory = async function(req, res) {
+  let nav = await Util.getNav()
+
+  const { inv_make, inv_model, inv_year,inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, 
+  classification_id } = req.body
+
+  const addInvResult = await inventoryModel.addInventory( 
+          inv_make, inv_model, inv_year,inv_description, inv_image,
+          inv_thumbnail, inv_price, inv_miles, inv_color, 
+          classification_id )
+
+  console.log(addInvResult)
+  if (addInvResult) {
+    req.flash(
+      "notice",
+      `Congratulations, ${inv_year} ${inv_make} ${inv_model} has been added to
+      inventory!`
+    )
+    res.status(201).render("./inventory/management.ejs", {
+      title: "Manage Inventory",
+       nav,
+       errors: null,
+     })
+  } else {
+    req.flash("notice", `Sorry, ${inv_year} ${inv_make} ${inv_model} could not
+    be added to inventory.`)
+    res.status(501).render("inventory/add-inventory", {
+      title: "Manage Inventory",
+      nav,
+      errors: null,
+    })
+  }
+}
 
 module.exports = invCont;

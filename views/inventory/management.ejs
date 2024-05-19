@@ -1,5 +1,5 @@
 <% if(title) { %>
-  <h1>
+  <h1 id="managementHead">
     <%= title %>
   </h1>
   <%} else { res.redirect('/'); } %>
@@ -15,9 +15,9 @@
           </ul>
           <% } %>
 
-<div id="mangeBtnsContainer">
+<div id="manageBtnsContainer">
   <button id="manageClassificationBtn" class="manageBtn"
-    onclick="location.href='./add-classification'">Manage Classificaiton
+    onclick="location.href='./add-classification'">Manage Classification
   </button>
   <button id="manageInventoryBtn" class="manageBtn"
     onclick="location.href='./add-inventory'">Manage Inventory
