@@ -16,8 +16,7 @@ const accountRoute = require("./routes/accountRoute");
 const Util = require("./utilities/index")
 const app = express();
 const static = require("./routes/static");
-const bodyParser = require("body-parser");
-const { getNav } = require("./utilities");
+
 
 
 
@@ -42,8 +41,8 @@ app.use(function (req, res, next){
   next();
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })) //for parsing applicatoin/x
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })) //for parsing applicatoin/x
 
 /* ***********************
  * View Engine and Templates
