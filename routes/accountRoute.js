@@ -12,10 +12,9 @@ router.get("/registration", Util.handleErrors(acctController.builRegistration))
 
 //POST Routes
 router.post("/registration",
-regValidate.registationRules(),
-regValidate.loginRules(),
-
-regValidate.checkRegData, Util.handleErrors(acctController.registerAccount))
+  regValidate.registationRules(),
+  regValidate.loginRules(),
+  regValidate.checkRegData, Util.handleErrors(acctController.registerAccount) )
 
 // Process the login attempt
 router.post("/login", (req, res) => {
