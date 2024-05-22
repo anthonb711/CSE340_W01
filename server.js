@@ -16,6 +16,8 @@ const accountRoute = require("./routes/accountRoute");
 const Util = require("./utilities/index")
 const app = express();
 const static = require("./routes/static");
+const cookieParser = require("cookie-parser");
+
 
 
 
@@ -43,6 +45,8 @@ app.use(function (req, res, next){
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })) //for parsing applicatoin/x
+app.use(cookieParser());
+app.use(Util.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
