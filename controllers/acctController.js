@@ -89,7 +89,6 @@ async function registerAccount(req, res) {
     account_email,
     hashedPassword
   )
-console.log(regResult)
   if (regResult) {
     req.flash(
       "notice",
@@ -116,6 +115,7 @@ async function acctLogin (req, res) {
   let nav = await Util.getNav();
   const { account_email, account_password } = req.body;
   const accountData = await accountModel.getAcctByEmail(account_email)
+  console.log(accountData)
   if(!accountData) { // check for email if not found then... 
     req.flash("notice", "Please check your credentials and try again.");
     res.status(400).render("account/login", {
