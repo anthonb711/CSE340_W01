@@ -8,7 +8,7 @@ async function getClassifications() {
 };
 
 /* *******************************
- * Get all inventory items and classification_name by classification_id
+ * GET INVENTORY BY CLASS ID
  ****************************** */
 async function getInventoryByClassificationId(classification_id) {
 try {
@@ -21,7 +21,7 @@ try {
   )
   return data.rows
 } catch(error) {
-  console.error("getclassificatiosbyid error" + error)
+  console.error("inv/model get Classifications By Id error" + error)
   };
 };
 

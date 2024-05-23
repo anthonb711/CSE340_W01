@@ -4,11 +4,10 @@
   </h1>
   <%} else { res.redirect('/'); } %>
 
-    <%- messages() %>
-        <% if (errors) { %>
-          <ul class="notice">
-            <% errors.array().forEach(error=> { %>
-              <li>
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error=> { %><li>
                 <%= error.msg %>
               </li>
               <% }) %>
@@ -21,6 +20,29 @@
   </button>
   <button id="manageInventoryBtn" class="manageBtn"
     onclick="location.href='./add-inventory'">Manage Inventory
-  </button>
-</div>  
+  </button> 
+<br>
+</div>
+<div id="infoContainer">
+<h2>Manage Inventory</h2>
+<p>
+  Select a classification from the list to see the items
+  belonging to the classifcation
+</p>
+</div>
+<div id="invListContainer">
+  <%- classificationSelect %>
+  </div>
 
+<div id="tableContainer">
+  <table id="inventoryDisplay">
+    <!--Table contents to be injected -->
+  </table>
+</div>
+<noscript>
+  JavaScript must be enabled to use this page.
+</noscript>
+
+
+
+<script src="../../js/inventory.js"></script>

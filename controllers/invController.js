@@ -5,7 +5,7 @@ const Util = require("../utilities/");
 const invCont = {};
 
 /* *******************************
- * Build inventory by classification view
+ * BUILD BY CLASSIFICATION ID
  ****************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   try {
@@ -29,7 +29,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   }
 }
 /* *******************************
- * Build inventory by inventory detail view
+ * BUILD BY DETAIL ID
  ****************************** */
 invCont.buildByDetailId = async function (req, res, next) {
   try {
@@ -54,7 +54,7 @@ invCont.buildByDetailId = async function (req, res, next) {
 }
 
 /* *******************************
- * Build intentional error link
+ * MAKE500
  ****************************** */
 invCont.make500 = function (req, res, next) {
   const make500Er = new Error();
@@ -71,10 +71,12 @@ invCont.buildManagement = async function (req, res, next) {
   try {
   let nav = await Util.getNav()
   
+  const classificationSelect = await Util.buildClassificationList();
   res.render("./inventory/management.ejs", {
     title: "Inventory Management",
     nav,
     errors: null,
+    classificationSelect,
   })
 
   }catch (error) {
@@ -85,7 +87,7 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 /* *******************************
- * Build Add Classification view
+ * BUILD CLASSIFICATION
  ****************************** */
 
 invCont.buildAddClassification = async function (req, res, next) {
@@ -105,7 +107,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 }
 
 /* ****************************************
-*  Process Add Classification
+*  ADD CLASSIFICATION
 * *************************************** */
  invCont.addClassification = async function(req, res) {
   let nav = await Util.getNav()
@@ -135,7 +137,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 }
 
 /* *******************************
- * Build Add Inventory view
+ * BUILD ADD INVENTORY
  ****************************** */
 invCont.buildAddInventory = async function (req, res, next) {
     try {
@@ -156,7 +158,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 }
 
 /* ****************************************
-*  Process Add Inventory
+* ADD INVENTORY
 * *************************************** */
  invCont.addInventory = async function(req, res) {
   let nav = await Util.getNav()
@@ -191,5 +193,22 @@ invCont.buildAddInventory = async function (req, res, next) {
     })
   }
 }
+
+/* *******************************
+ * GET INVENTORY JSON
+ *
+ * Return Inventory by Classification As JSON
+ ****************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classificationId)
+  const invData = await inventoryModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
+  }
+}
+
+
 
 module.exports = invCont;

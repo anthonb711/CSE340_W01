@@ -312,6 +312,63 @@ height: auto;
   font-size: larger;
   margin-top: 30px;
 }
+#infoContainer {
+  display: flex;
+    justify-content: center;
+}
+#invListContainer {
+  display: flex;
+  justify-content: center;
+}
+#tableContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#classificationList {
+  font-size: larger;
+  border-radius: 15px;
+  margin-bottom: 10px;
+
+  border: 3px rgb(161, 26, 26) solid;
+  max-width: 225px;
+  max-height: 26px;
+}
+
+#inventoryDisplay  td  {
+  border: 3px rgb(161, 26, 26) solid;
+  border-left: none;
+  border-right: none;
+  border-top:none;
+  padding: 10px;
+}
+
+th {
+  border: 3px rgb(161, 26, 26) solid;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+#inventoryDisplay button {
+  border-radius: 15px;
+  border: 3px rgb(161, 26, 26) solid;
+    background-color: whitesmoke;
+}
+
+#inventoryDisplay a {
+  text-decoration: none;
+  color: black;
+}
+
+h2{
+  margin:10px;
+}
+p {
+  margin: 10px;
+}
+
+
 
 
 /***********larger screens > 768 ****************/
