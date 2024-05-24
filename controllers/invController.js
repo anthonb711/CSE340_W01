@@ -209,6 +209,41 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
+/* *******************************
+ * EDIT INVENTORY DATA
+ ****************************** */
+invCont.editInvData = async (req, res, next) => {
+  const inv_id = parseInt(req.params.detailId);
+  try {
+    let nav = await Util.getNav();
+    const result = await inventoryModel.getInventoryByDetailId(inv_id)
+    const invData = result[0];
+    let categorySelect = await Util.buildClassificationList(invData.classification_id)
+    const invName = invData.inv_make + " " + invData.inv_model;
+    
+    res.render("./inventory/edit-inventory", {
+      title: "Edit " + invName,
+      nav,
+      categorySelect: categorySelect,
+      errors: null,
+      inv_id: invData.inv_id,
+      inv_make: invData.inv_make,
+      inv_model: invData.inv_model,
+      inv_year: invData.inv_year,
+      inv_description: invData.inv_description,
+      inv_image: invData.inv_image,
+      inv_thumbnail: invData.inv_thumbnail,
+      inv_price: "$" + new Intl.NumberFormat('en-US').format(invData.inv_price),
+      inv_miles: new Intl.NumberFormat('en-US').format(invData.inv_miles),
+      inv_color: invData.inv_color,
+     classification_id: invData.classification_id
+    })
+  } catch (error) {
+    console.error(error);
+    error.status = 500;
+    next(error);
+  }
+}
 
 
 module.exports = invCont;

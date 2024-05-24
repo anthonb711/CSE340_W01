@@ -31,8 +31,8 @@ Util.getNav = async function (req, res, next) {
 * ************************************ */
 Util.buildClassificationList = async function (classification_id = null) {
     let data = await invModel.getClassifications()
-    let classificationList =
-      '<select name="classification_id" id="classificationList" required>'
+    let classificationList = '<select name="classification_id" id="classificationList" required >'
+
     classificationList += "<option value=''>Choose a Classification</option>"
     data.rows.forEach((row) => {
       classificationList += '<option value="' + row.classification_id + '"'
@@ -44,7 +44,6 @@ Util.buildClassificationList = async function (classification_id = null) {
       }
       classificationList += ">" + row.classification_name + "</option>"
     })
-    classificationList += 'value=" <%= locals.inv_miles%>'
     classificationList += "</select>"
     return classificationList
   }
@@ -91,7 +90,6 @@ Util.buildDetailCard = async function(data){
   let grid
   if(data.length > 0){
     const vehicle = data[0];
-    console.log(data);
     grid = '<div id="detailContainer"> <img id="detailImg" src="'
       + vehicle.inv_image
       + '" alt="Image of '

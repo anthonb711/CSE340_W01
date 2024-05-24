@@ -13,6 +13,7 @@ router.get("/", Util.handleErrors(invController.buildManagement));
 router.get("/ErrorLink/", Util.handleErrors(invController.make500));
 router.get("/add-inventory", Util.handleErrors(invController.buildAddInventory));
 router.get("/detail/:detailId",  Util.handleErrors(invController.buildByDetailId));
+router.get("/edit/:detailId", Util.handleErrors(invController.editInvData));
 
 // POST Routes
 router.post("/add-classification", invValidate.classificationRules(),

@@ -296,6 +296,7 @@ height: auto;
   border: 3px rgb(161, 26, 26) solid;
     margin-bottom: 10px;
     width: 100%;
+    text-align: center;
 }
 #enterInventory select {
   font-size: larger;
