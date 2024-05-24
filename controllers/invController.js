@@ -210,7 +210,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 }
 
 /* *******************************
- * EDIT INVENTORY DATA
+ * BUILD EDIT INVENTORY DATA
  ****************************** */
 invCont.editInvData = async (req, res, next) => {
   const inv_id = parseInt(req.params.detailId);
@@ -233,8 +233,8 @@ invCont.editInvData = async (req, res, next) => {
       inv_description: invData.inv_description,
       inv_image: invData.inv_image,
       inv_thumbnail: invData.inv_thumbnail,
-      inv_price: "$" + new Intl.NumberFormat('en-US').format(invData.inv_price),
-      inv_miles: new Intl.NumberFormat('en-US').format(invData.inv_miles),
+      inv_price: invData.inv_price,
+      inv_miles: invData.inv_miles,
       inv_color: invData.inv_color,
      classification_id: invData.classification_id
     })
@@ -245,5 +245,64 @@ invCont.editInvData = async (req, res, next) => {
   }
 }
 
+/* *******************************
+ * UPDATE INVENTORY
+ ****************************** */
+invCont.updateInv = async function (req, res, next) {
+  let nav = await Util.getNav()
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+  const updateResult = await inventoryModel.updateInv(
+    inv_id,  
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+
+  if (updateResult) {
+    const itemName = updateResult.inv_make + " " + updateResult.inv_model
+    req.flash("notice", `The ${itemName} was successfully updated.`)
+    res.redirect("/inv/")
+  } else {
+    const classificationSelect = await Util.buildClassificationList(classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("inventory/edit-inventory", {
+    title: "Edit " + itemName,
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+    })
+  }
+}
 
 module.exports = invCont;

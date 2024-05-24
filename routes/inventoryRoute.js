@@ -17,9 +17,12 @@ router.get("/edit/:detailId", Util.handleErrors(invController.editInvData));
 
 // POST Routes
 router.post("/add-classification", invValidate.classificationRules(),
-  invValidate.checkClassificationData, Util.handleErrors(invController.addClassification) )
+  invValidate.checkClassificationData, Util.handleErrors(invController.addClassification));
 
 router.post("/add-inventory", invValidate.inventoryRules(),
-  invValidate.checkInventoryData, Util.handleErrors(invController.addInventory) )
+  invValidate.checkInventoryData, Util.handleErrors(invController.addInventory));
+
+router.post("/update/", invValidate.inventoryRules(),
+   invValidate.checkUpdateData, Util.handleErrors(invController.updateInv));
 
 module.exports = router;

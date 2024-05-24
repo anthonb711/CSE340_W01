@@ -140,8 +140,8 @@ validate.checkClassificationData = async (req, res, next) => {
   }
 
 /* ******************************
- * Check data and return errors for the Add
- * Inventory View
+ * CHECK INVENTORY DATA
+ * for the ADD view
  * ***************************** */
 validate.checkInventoryData = async (req, res, next) => {
   const { inv_make, inv_model, inv_year,inv_description, 
@@ -169,6 +169,41 @@ validate.checkInventoryData = async (req, res, next) => {
       classification_id,
     })
     console.log(`this is were it is ${JSON.stringify(errors)}`)
+    return
+  }
+  next()
+}
+
+/* ******************************
+ * CHECK UPDATE DATA
+ * for the EDIT view
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const { inv_id, inv_make, inv_model, inv_year,inv_description, 
+  inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, 
+  classification_id } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await Util.getNav()
+    let categorySelect = await Util.buildClassificationList();
+    res.render("inventory/edit-inventory", {
+      errors,
+      title: "Edit " + inv_make + " " + inv_model,
+      nav,
+      categorySelect,
+      inv_id,
+      inv_make, 
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color, 
+      classification_id,
+    })
     return
   }
   next()
