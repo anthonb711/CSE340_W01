@@ -14,6 +14,7 @@ router.get("/ErrorLink/", Util.handleErrors(invController.make500));
 router.get("/add-inventory", Util.handleErrors(invController.buildAddInventory));
 router.get("/detail/:detailId",  Util.handleErrors(invController.buildByDetailId));
 router.get("/edit/:detailId", Util.handleErrors(invController.editInvData));
+router.get("/delete/:invId", Util.handleErrors(invController.buildDeleteInv));
 
 // POST Routes
 router.post("/add-classification", invValidate.classificationRules(),
@@ -24,5 +25,7 @@ router.post("/add-inventory", invValidate.inventoryRules(),
 
 router.post("/update/", invValidate.inventoryRules(),
    invValidate.checkUpdateData, Util.handleErrors(invController.updateInv));
+
+router.post("/remove/", Util.handleErrors(invController.deleteInv));
 
 module.exports = router;

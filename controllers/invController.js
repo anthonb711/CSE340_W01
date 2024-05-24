@@ -170,7 +170,7 @@ invCont.buildAddInventory = async function (req, res, next) {
           inv_make, inv_model, inv_year,inv_description, inv_image,
           inv_thumbnail, inv_price, inv_miles, inv_color, 
           classification_id )
-
+const classificationSelect = await Util.buildClassificationList();
   console.log(addInvResult)
   if (addInvResult) {
     req.flash(
@@ -182,6 +182,7 @@ invCont.buildAddInventory = async function (req, res, next) {
       title: "Manage Inventory",
        nav,
        errors: null,
+       classificationSelect,
      })
   } else {
     req.flash("notice", `Sorry, ${inv_year} ${inv_make} ${inv_model} could not
@@ -210,7 +211,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 }
 
 /* *******************************
- * BUILD EDIT INVENTORY DATA
+ * BUILD EDIT INVENTORY VIEW
  ****************************** */
 invCont.editInvData = async (req, res, next) => {
   const inv_id = parseInt(req.params.detailId);
@@ -251,31 +252,12 @@ invCont.editInvData = async (req, res, next) => {
 invCont.updateInv = async function (req, res, next) {
   let nav = await Util.getNav()
   const {
-    inv_id,
-    inv_make,
-    inv_model,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_year,
-    inv_miles,
-    inv_color,
-    classification_id,
-  } = req.body
-  const updateResult = await inventoryModel.updateInv(
-    inv_id,  
-    inv_make,
-    inv_model,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_year,
-    inv_miles,
-    inv_color,
-    classification_id
-  )
+    inv_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail,
+    inv_price, inv_year, inv_miles, inv_color, classification_id, } = req.body
+  
+    const updateResult = await inventoryModel.updateInv(
+      inv_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail,
+      inv_price, inv_year, inv_miles, inv_color, classification_id)
 
   if (updateResult) {
     const itemName = updateResult.inv_make + " " + updateResult.inv_model
@@ -304,5 +286,75 @@ invCont.updateInv = async function (req, res, next) {
     })
   }
 }
+
+/* *******************************
+ * BUILD DELETE INVENTORY VIEW
+ ****************************** */
+invCont.buildDeleteInv = async (req, res, next) => {
+  const inv_id = parseInt(req.params.invId);
+  try {
+    let nav = await Util.getNav();
+    const result = await inventoryModel.getInventoryByDetailId(inv_id)
+    const invData = result[0];
+    let categorySelect = await Util.buildClassificationList(invData.classification_id)
+    const invName = invData.inv_make + " " + invData.inv_model;
+    
+    res.render("./inventory/delete-confirm", {
+      title: "Delete " + invName,
+      nav,
+      categorySelect: categorySelect,
+      errors:           null,
+      inv_id:           invData.inv_id,
+      inv_make:         invData.inv_make,
+      inv_model:        invData.inv_model,
+      inv_year:         invData.inv_year,
+      inv_price:        invData.inv_price,
+    })
+  } catch (error) {
+    console.error(error);
+    error.status = 500;
+    next(error);
+  }
+}
+
+/* *******************************
+ * DELETE INVENTORY
+ ****************************** */
+invCont.deleteInv = async function (req, res, next) {
+  let nav = await Util.getNav()
+  console.log("WE ARE IN DELTE CONTROLLER")
+  const {
+    inv_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail,
+    inv_price, inv_year, inv_miles, inv_color, classification_id, } = req.body
+  
+    const deleteResult = await inventoryModel.removeInv(inv_id)
+    console.log(deleteResult)
+
+  if (deleteResult) {
+    const itemName = deleteResult.inv_make + " " + deleteResult.inv_model
+    req.flash("notice", `<h2>The inventory item was successfully deleted.<h2>`)
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, the delete failed.")
+    res.status(501).render("inventory/delete-confirmation", {
+    title: "Delete Item",
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+    })
+  }
+}
+
 
 module.exports = invCont;
