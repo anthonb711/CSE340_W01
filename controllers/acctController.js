@@ -63,11 +63,15 @@ const builRegistration = async (req, res, next) => {
  ****************************** */
 const buildAcctManagement = async (req, res, next) => {
   try {
+    
     let nav = await Util.getNav();
+
+    const welcomeBasic = res.locals.accountData.account_firstname;
     res.render("account/management", {
       title: "Account Management",
       nav,
       errors: null,
+      welcomeBasic
     })
 
   } catch (error) {

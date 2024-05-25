@@ -163,6 +163,7 @@ Util.checkJWTToken = (req, res, next) => {
  *  Check Account Type
  * ************************************ */
  Util.checkAcctType = (req, res, next) => {
+
   if(res.locals.loggedin && (res.locals.accountData.account_type === "Employee" ||
                              res.locals.accountData.account_type === "Admin")) {
     next(); 
