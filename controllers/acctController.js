@@ -65,13 +65,15 @@ const buildAcctManagement = async (req, res, next) => {
   try {
     
     let nav = await Util.getNav();
-
+    const acctId = res.locals.accountData.account_id; 
     const welcomeBasic = res.locals.accountData.account_firstname;
+
     res.render("account/management", {
       title: "Account Management",
       nav,
       errors: null,
-      welcomeBasic
+      welcomeBasic,
+      acctId
     })
 
   } catch (error) {
@@ -80,6 +82,25 @@ const buildAcctManagement = async (req, res, next) => {
   error.message = "SERVER ERROR"
   next(error);
   }
+}
+/* *******************************
+ * BUILD UPDATE INFO
+ ****************************** */
+async function buildUpdateInfo (req, res, next) {
+  try {
+     let nav = await Util.getNav();
+     const account_id = req.params.accountId;
+     res.status(201).render("account/updateInfo", {
+        title: "Update Account Information",
+        nav,
+        errors:  null,
+        account_id: req.params.accountId,
+        welcomeBasic: res.locals.accountData.account_firstname,
+      })
+   } catch (errors) {
+     req.flash("notice", "Info Unavailable")
+     req.redirect("./login")
+   }
 }
 
 /* ****************************************
@@ -184,6 +205,6 @@ module.exports = {
   builRegistration,
   registerAccount,
   acctLogin,
-  buildAcctManagement
- 
+  buildAcctManagement,
+  buildUpdateInfo
  }

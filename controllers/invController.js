@@ -39,7 +39,7 @@ invCont.buildByDetailId = async function (req, res, next) {
     let nav = await Util.getNav()
     const titleString = data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
 
-      res.render("./inventory/detail.ejs", {
+      res.render("./inventory/detail", {
       title: titleString,
         nav,
        grid,
