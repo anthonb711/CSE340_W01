@@ -24,6 +24,22 @@ const buildLogin = async (req, res, next) => {
 };
 
 /* *******************************
+ *  BUILD LOGOUT
+ ****************************** */
+const buildLogout = async (req, res, next) => {
+  try {
+    res.clearCookie("jwt");
+    res.redirect("./login/")
+  }catch (error) {
+  console.error(error);
+  error.status = 500;
+  error.message = "SERVER ERROR"
+  next(error);
+  }
+
+};
+
+/* *******************************
  * BUILD REGISTRATION
  ****************************** */
 const builRegistration = async (req, res, next) => {
@@ -126,10 +142,10 @@ async function acctLogin (req, res) {
    })
     return
   } // Email was found try... 
-        
+        //await bcrypt.compare(account_password, accountData.account_password)
   try {
       const result = await bcrypt.compare(account_password, accountData.account_password)
-    if (await bcrypt.compare(account_password, accountData.account_password)) {
+    if (result) {
       delete accountData.account_password;
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: 3600 })
@@ -139,6 +155,14 @@ async function acctLogin (req, res) {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
       }
     return res.redirect("/account/")
+    } else {
+    req.flash("notice", "Please check your credentials and try again.");
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+   })
     }
   } catch (error) {
     return new Error('Access Forbidden')
@@ -152,6 +176,7 @@ async function acctLogin (req, res) {
 
 module.exports = { 
   buildLogin,
+  buildLogout,
   builRegistration,
   registerAccount,
   acctLogin,

@@ -27,7 +27,7 @@
                required value="<%= locals.inv_model%>">
     <br>
     <label for="invYear">Year</label><br>
-    <input type="text" id="invYear" name="inv_year" 
+    <input type="number" id="invYear" name="inv_year" 
            required pattern="^[0-9].{3,}$" 
            value="<%= locals.inv_year%>">
     <br>
@@ -38,18 +38,19 @@
     <br>
     <label for="invImg">Image Path</label><br>
     <input type="text" id="invImg" name="inv_image" 
-           required value=" <%= locals.inv_image%>">
+           required value="/images/vehicles/no-image.png" readonly>
     <br>
     <label for="invThumb">Thumbnail Path</label><br>
     <input type="text" id="invThumb" name="inv_thumbnail" 
-    required value=" <%= locals.inv_thumbnail%>">
+    required value="/images/vehicles/no-image-tn.png" readonly>
+    
     <br>
     <label for="invPrice">Price</label><br>
-    <input type="text" id="invPrice" name="inv_price" 
-           required value=" <%= locals.inv_price%>">
+    <input type="nummber" id="invPrice" name="inv_price" 
+           min="0" max="400000" required value=" <%= locals.inv_price%>">
     <br>
     <label for="invMiles">Miles</label><br>
-    <input type="text" id="invMiles" name="inv_miles" 
+    <input type="number" id="invMiles" name="inv_miles" 
            required value=" <%= locals.inv_miles%>">
     <br>
     <label for="classificationID">Classification ID</label><br>

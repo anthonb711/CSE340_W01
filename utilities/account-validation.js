@@ -94,7 +94,6 @@ validate.checkLoginData = async (req, res, next) => {
   const { account_email } = req.body
   let errors = []
   errors = validationResult(req)
-  console.log(errors)
   if (!errors.isEmpty()) {
     let nav = await Util.getNav()
     res.render("account/login", {

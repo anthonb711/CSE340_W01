@@ -11,6 +11,7 @@ const acctController = require("../controllers/acctController");
 router. get("/", 
   Util.checkLogin, Util.handleErrors(acctController.buildAcctManagement));
 router.get("/login", Util.handleErrors(acctController.buildLogin));
+router.get("/logout", Util.handleErrors(acctController.buildLogout));
 router.get("/registration", Util.handleErrors(acctController.builRegistration));
 
 

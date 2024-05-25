@@ -1,5 +1,10 @@
 
 /******* Mobile Styles < 768px ******************/
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 body {
    display: flex;
    flex-direction: column;
@@ -51,6 +56,25 @@ nav a {
    color: white;
    text-decoration: none;
 }
+main {
+  flex: 1;
+}
+
+footer{
+ 
+    background-color: black;
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      height: 40px;
+      color: white;
+}
+footer a {
+  color: white;
+}
+
 /******* HOME PAGE ******************/
 #car-div {
    max-width: fit-content;
@@ -286,7 +310,7 @@ height: auto;
   flex-direction: column;
     font-size: x-large;
       color: white;
-      width: 100%;
+      width: 50%;
       margin: auto;
 }
 
@@ -295,7 +319,7 @@ height: auto;
 #enterInventory select {
   border: 3px rgb(161, 26, 26) solid;
     margin-bottom: 10px;
-    width: 100%;
+    width: 50%;
     text-align: center;
 }
 #enterInventory select {

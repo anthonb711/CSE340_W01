@@ -29,15 +29,14 @@ try {
  * Get inventory detail on vehicle by detail_id
  ****************************** */
 async function getInventoryByDetailId(detail_id) {
-  console.log(detail_id)
 try {
   const data = await pool.query(
     `SELECT * FROM public.inventory AS i
     WHERE i.inv_id = $1`,
   [detail_id]
   )
- 
-  return data.rows
+
+  return data.rows[0]
 } catch(error) {
   console.error("getdetailsbyid error" + error)
   };
@@ -133,7 +132,6 @@ async function removeInv(inv_id,) {
   try {
     const sql = "DELETE FROM public.inventory WHERE inv_id = $1";
     const data = await pool.query(sql, [inv_id])
-    console.log("DO WE MAKE IT TO POST REMOVE?")
   return data
   } catch (error) {
     new Error("Delete Inventory Error");
