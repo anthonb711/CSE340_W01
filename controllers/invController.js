@@ -216,26 +216,25 @@ invCont.editInvData = async (req, res, next) => {
   try {
     let nav = await Util.getNav();
     const result = await inventoryModel.getInventoryByDetailId(inv_id)
-    const invData = result[0];
-    let categorySelect = await Util.buildClassificationList(invData.classification_id)
-    const invName = invData.inv_make + " " + invData.inv_model;
+    let categorySelect = await Util.buildClassificationList(result.classification_id)
+    const invName = `${result.inv_make} ${result.inv_model}`;
     
     res.render("./inventory/edit-inventory", {
       title: "Edit " + invName,
       nav,
       categorySelect: categorySelect,
       errors: null,
-      inv_id: invData.inv_id,
-      inv_make: invData.inv_make,
-      inv_model: invData.inv_model,
-      inv_year: invData.inv_year,
-      inv_description: invData.inv_description,
-      inv_image: invData.inv_image,
-      inv_thumbnail: invData.inv_thumbnail,
-      inv_price: invData.inv_price,
-      inv_miles: invData.inv_miles,
-      inv_color: invData.inv_color,
-     classification_id: invData.classification_id
+      inv_id: result.inv_id,
+      inv_make: result.inv_make,
+      inv_model: result.inv_model,
+      inv_year: result.inv_year,
+      inv_description: result.inv_description,
+      inv_image: result.inv_image,
+      inv_thumbnail: result.inv_thumbnail,
+      inv_price: result.inv_price,
+      inv_miles: result.inv_miles,
+      inv_color: result.inv_color,
+     classification_id: result.classification_id
     })
   } catch (error) {
     console.error(error);
@@ -245,7 +244,7 @@ invCont.editInvData = async (req, res, next) => {
 }
 
 /* *******************************
- * UPDATE INVENTORY
+ * UPDATE INVENTORY POST
  ****************************** */
 invCont.updateInv = async function (req, res, next) {
   let nav = await Util.getNav()
@@ -268,7 +267,7 @@ invCont.updateInv = async function (req, res, next) {
     res.status(501).render("inventory/edit-inventory", {
     title: "Edit " + itemName,
     nav,
-    classificationSelect: classificationSelect,
+    classificationSelect,
     errors: null,
     inv_id,
     inv_make,

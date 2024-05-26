@@ -84,23 +84,60 @@ const buildAcctManagement = async (req, res, next) => {
   }
 }
 /* *******************************
- * BUILD UPDATE INFO
+ * BUILD UPDATE INFO VIEW
  ****************************** */
 async function buildUpdateInfo (req, res, next) {
-  try {
-     let nav = await Util.getNav();
-     const account_id = req.params.accountId;
-     res.status(201).render("account/updateInfo", {
-        title: "Update Account Information",
-        nav,
-        errors:  null,
-        account_id: req.params.accountId,
-        welcomeBasic: res.locals.accountData.account_firstname,
-      })
+       const account_id = parseInt(req.params.acctId);
+   try {
+      let nav = await Util.getNav();
+      const acctInfo = await accountModel.getAcctById(account_id);
+
+      res.render("account/updateInfo", {
+         title: "Update Account Information",
+         nav,
+         errors:  null,
+         account_id,
+         welcomeBasic: acctInfo.account_firstname,
+         account_firstname: acctInfo.account_firstname,
+         account_lastname: acctInfo.account_lastname,
+         account_email: acctInfo.account_email
+       })
    } catch (errors) {
-     req.flash("notice", "Info Unavailable")
-     req.redirect("./login")
+     req.flash("notice", errors)
    }
+}
+
+/* *******************************
+ * UPDATE INFO - POST ROUTE
+ ****************************** */
+async function updateInfo (req, res, next) {
+  let nav = await Util.getNav()
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  
+    const updateResult = await accountModel.updateInfo(
+      account_firstname, account_lastname, account_email, account_id)
+
+  if (updateResult) {
+    const accountName = updateResult.account_firstname+ " " + 
+      updateResult.account_lastname;
+
+    req.flash("notice", `The info for ${accountName} was successfully updated.`)
+    res.redirect("/account/")
+  } else {
+    const accountName = `${account_firstname} ${account_lastname}`
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("account/updateInfo", {
+    title: "Update Info for " + accountName,
+    nav,
+    errors: null,
+    welcomeBasic: account_firstname,
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id
+    
+    })
+  }
 }
 
 /* ****************************************
@@ -206,5 +243,6 @@ module.exports = {
   registerAccount,
   acctLogin,
   buildAcctManagement,
-  buildUpdateInfo
+  buildUpdateInfo,
+  updateInfo,
  }

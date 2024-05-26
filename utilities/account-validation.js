@@ -3,9 +3,9 @@ const Util = require (".");
   const accountModel = require("../models/account-model");
   const validate = {}
 
-  /*  **********************************
-  *  Registration Data Login Rules
-  * ********************************* */
+/**************************************
+*  Login Rules
+**************************************/
   validate.loginRules = () => {
     return [
 
@@ -33,6 +33,36 @@ const Util = require (".");
     ]
   }
 
+/**************************************
+*  UPDATE INFO RULES
+**************************************/
+  validate.UpdateRules = () => {
+    return [
+
+      body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+
+      body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."),
+
+      // valid email is required and cannot already exist in the DB
+      body("account_email")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required.")
+    ]
+  }
 
 
 
@@ -108,7 +138,7 @@ validate.checkLoginData = async (req, res, next) => {
 }
 
 
-  /* ******************************
+/* ******************************
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
@@ -124,6 +154,30 @@ validate.checkRegData = async (req, res, next) => {
       account_firstname,
       account_lastname,
       account_email,
+    })
+    return
+  }
+  next()
+}
+
+  /* ******************************
+ * Check data and return errors or continue to registration
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await Util.getNav()
+    res.render("account/updateInfo", {
+      errors,
+      title: "Account Update",
+      nav,
+      welcomeBasic: account_firstname,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id
     })
     return
   }

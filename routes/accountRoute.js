@@ -2,7 +2,7 @@
 const express = require("express");
 const router = new express.Router();
 const Util = require("../utilities/");
-const regValidate = require('../utilities/account-validation');
+const acctValidate = require('../utilities/account-validation');
 const acctController = require("../controllers/acctController");
 
 /* *******************************
@@ -11,7 +11,7 @@ const acctController = require("../controllers/acctController");
 router. get("/", 
   Util.checkLogin, Util.handleErrors(acctController.buildAcctManagement));
 
-router.get("/updateInfo/:accountId",
+router.get("/updateInfo/:acctId",
   Util.handleErrors(acctController.buildUpdateInfo));
 
 router.get("/login",
@@ -28,13 +28,16 @@ router.get("/registration",
  * POST ROUTES
  ****************************** */
 router.post("/registration",
-  regValidate.registationRules(),
-  regValidate.checkRegData, Util.handleErrors(acctController.registerAccount));
+  acctValidate.registationRules(),
+  acctValidate.checkRegData, Util.handleErrors(acctController.registerAccount));
 
 // Process the login attempt
 router.post("/login", 
-  regValidate.loginRules(),
-  regValidate.checkLoginData, Util.handleErrors(acctController.acctLogin)
-);
+  acctValidate.loginRules(),
+  acctValidate.checkLoginData, Util.handleErrors(acctController.acctLogin));
+
+router.post("/updateInfo",
+  acctValidate.UpdateRules(), acctValidate.checkUpdateData, 
+  Util.handleErrors(acctController.updateInfo));
 
 module.exports = router;
