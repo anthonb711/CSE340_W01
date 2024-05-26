@@ -1,5 +1,5 @@
 <% if(title) { %>
-  <h1>
+  <h1 id="acctMangetitle">
     <%= title %>
   </h1>
   <%} else { res.redirect('/'); } %>
@@ -15,11 +15,11 @@
     </ul>
   <% } %>
 
-
-    <h2> Welcome <%- welcomeBasic  %> </h2>
-    <div id="manageLinks">
+    <div id="manageLinksContainer">
+    <h2 id="welcome"> Welcome <%- welcomeBasic  %> </h2><hr>
+    
       <h3>Update Account Info</h3>
-      <p> <a href="/account/updateInfo/<%- acctId %>">Update Account Info</a></p>
+      <p> <a href="/account/updateInfo/<%- acctId %>">Update Account Info</a></p> <hr>
       <% if(locals.accountData.account_type === "Admin" || 
             locals.accountData.account_type === "Employee") { %> 
           <h3>Inventory Management</h3>

@@ -1,5 +1,5 @@
 <% if(title) { %>
-  <h1>
+  <h1 id="updateInfoHead">
     <%= title %>
   </h1>
   <% } else { res.redirect('/'); } %>
@@ -15,22 +15,22 @@
     </ul>
   <% } %>
 
-    <h2> Welcome <%- welcomeBasic  %> </h2>
+    <h2 id="welcome"> Welcome <%- welcomeBasic  %> </h2>
 
     
     <form id="updateAcctForm" action="/account/updateInfo/" method="post">
   <fieldset id="updateInfoField">
     <legend>Account Update</legend>
 
-    <label for="fName">First Name:</label><br>
+    <label for="fName">First Name:</label>
     <input type="text" id="fName" name="account_firstname" 
            required value="<%= locals.account_firstname %>">
-    <br>
-    <label for="lName">Last Name:</label><br>
+    <br><br>
+    <label for="lName">Last Name:</label>
     <input type="text" id="lName" name="account_lastname" 
                required value="<%= locals.account_lastname %>">
-    <br>
-    <label for="email">Email Address:</label><br>
+    <br><br>
+    <label for="email">Email Address:</label>
     <input type="email" id="email" name="account_email" 
            required value="<%= locals.account_email %>">
     <br>
@@ -39,6 +39,22 @@
       <% if(account_id) { %> value="<%= locals.account_id %>" <% } %> >
     <br>
 
+  </fieldset>
+</form>
+<br> <br>
+<form id="updatePwdForm" action="/account/updatePwd" method="post">
+  <fieldset id="updatePwd">
+    <legend>Change Password</legend>
+        <label for="account_password">Password</label>
+        <input type="password" id="account_password" name="account_password"
+              required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br>
+        <div id="pwdRegEx">
+          Passwords must be at least 12 characters and contain at least 1 
+          number, 1 capital letter and 1 special character
+        </div>
+    <input type="submit" id="updatePwdBtn" value="Save New Password"><br>
+    <input type="hidden" name="account_id" 
+      <% if(account_id) { %> value="<%= locals.account_id %>" <% } %> >
   </fieldset>
 </form>
 <script src="/js/acct-update.js" type="module"></script>

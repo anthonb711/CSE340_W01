@@ -29,7 +29,7 @@ const buildLogin = async (req, res, next) => {
 const buildLogout = async (req, res, next) => {
   try {
     res.clearCookie("jwt");
-    res.redirect("./login/")
+    res.redirect("/")
   }catch (error) {
   console.error(error);
   error.status = 500;
@@ -67,13 +67,15 @@ const buildAcctManagement = async (req, res, next) => {
     let nav = await Util.getNav();
     const acctId = res.locals.accountData.account_id; 
     const welcomeBasic = res.locals.accountData.account_firstname;
+    let grid = "";
 
     res.render("account/management", {
       title: "Account Management",
       nav,
       errors: null,
       welcomeBasic,
-      acctId
+      acctId,
+      grid
     })
 
   } catch (error) {
@@ -108,7 +110,7 @@ async function buildUpdateInfo (req, res, next) {
 }
 
 /* *******************************
- * UPDATE INFO - POST ROUTE
+ * PROCESS UPDATE INFO - POST ROUTE
  ****************************** */
 async function updateInfo (req, res, next) {
   let nav = await Util.getNav()
@@ -121,7 +123,16 @@ async function updateInfo (req, res, next) {
     const accountName = updateResult.account_firstname+ " " + 
       updateResult.account_lastname;
 
-    req.flash("notice", `The info for ${accountName} was successfully updated.`)
+const flashMsg = `
+  The account details for ${accountName} were successfully updated. <h3>Updated Account Details</h3>
+  <ul id="acctDetails">
+    <li>First Name: ${updateResult.account_firstname}</li>
+    <li>Last Name: ${updateResult.account_last}</li>
+    <li>Email Address: ${updateResult.account_email}</li>
+  </ul>`;
+
+
+    req.flash("notice", flashMsg)
     res.redirect("/account/")
   } else {
     const accountName = `${account_firstname} ${account_lastname}`
@@ -139,6 +150,73 @@ async function updateInfo (req, res, next) {
     })
   }
 }
+
+/* *******************************
+ * PROCESS UPDATE PASSWORD - POST ROUTE
+ ****************************** */
+async function updatePwd (req, res, next) {
+  let nav = await Util.getNav()
+  const { account_firstname, account_lastname, account_email, account_password, account_id } = req.body
+
+    // Hash the password before storing
+  let hashedPassword
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the password change.')
+    res.status(500).render("account/updateInfo", {
+      title: "Update Account Info",
+      nav,
+      errors: null,
+    })
+  }
+    // pass the hashed password into model to be updated in DB
+    const updateResult = await accountModel.updatePwd(hashedPassword, account_id)
+
+
+  if (updateResult) {
+    const accountName = `${updateResult.account_firstname} 
+      ${updateResult.account_lastname}`;
+
+      const flashMsg = `
+      The password for ${accountName} was successfully updated.
+      <h3>Account Details</h3>
+      <ul id="acctDetails">
+        <li>First Name: ${updateResult.account_firstname} </li>
+        <li>Last Name: ${updateResult.account_last} </li>
+        <li>Email Address: ${updateResult.account_email} </li>
+        </ul>`;
+
+    req.flash("notice", flashMsg)
+    res.status(202).render("account/management", {
+    title: "Update Info for " + accountName,
+    nav,
+    errors: null,
+    welcomeBasic: account_firstname,
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+    acctId: account_id,
+    })
+
+    } else {
+    const accountName = `${account_firstname} ${account_lastname}`
+    req.flash("notice", "Sorry, the update failed.")
+    res.render("account/updateInfo/", {
+    title: "Update Info for " + accountName,
+    nav,
+    errors: null,
+    welcomeBasic: account_firstname,
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+    })
+  }
+}
+
 
 /* ****************************************
 *  PROCESS REGISTRATION
@@ -245,4 +323,5 @@ module.exports = {
   buildAcctManagement,
   buildUpdateInfo,
   updateInfo,
+  updatePwd
  }

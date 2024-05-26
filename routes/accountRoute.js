@@ -40,4 +40,8 @@ router.post("/updateInfo",
   acctValidate.UpdateRules(), acctValidate.checkUpdateData, 
   Util.handleErrors(acctController.updateInfo));
 
+router.post("/updatePwd",
+  acctValidate.updatePwdRules(), acctValidate.checkUpdatePwd, 
+  Util.handleErrors(acctController.updatePwd));
+
 module.exports = router;

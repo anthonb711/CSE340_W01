@@ -33,6 +33,26 @@ const Util = require (".");
     ]
   }
 
+  /**************************************
+*  Update Password Rules
+**************************************/
+  validate.updatePwdRules = () => {
+    return [
+      // password is required and must be strong password
+      body("account_password")
+        .trim()
+        .notEmpty()
+        .isStrongPassword({
+          minLength: 12,
+          minLowercase: 1,
+          minUppercase: 1,
+          minNumbers: 1,
+          minSymbols: 1,
+        })
+        .withMessage("Password does not meet requirements."),
+    ]
+  }
+
 /**************************************
 *  UPDATE INFO RULES
 **************************************/
@@ -137,6 +157,29 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+  /* ******************************
+ * Check Password update and return errors for the Acct Management
+ * ***************************** */
+validate.checkUpdatePwd = async (req, res, next) => {
+  const acctId = req.params.acctId;
+  const { account_password} = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await Util.getNav()
+    res.render("account/updateInfo", {
+      errors,
+      title: "Update Info",
+      nav,
+      account_id: acctId,
+      acctId,
+      welcomeBasic: ""
+    })
+        return errors
+  }
+  next()
+}
+
 
 /* ******************************
  * Check data and return errors or continue to registration
@@ -161,7 +204,7 @@ validate.checkRegData = async (req, res, next) => {
 }
 
   /* ******************************
- * Check data and return errors or continue to registration
+ * Check data and return errors 
  * ***************************** */
 validate.checkUpdateData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email, account_id } = req.body

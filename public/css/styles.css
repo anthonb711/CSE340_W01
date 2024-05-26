@@ -393,8 +393,86 @@ p {
   margin: 10px;
 }
 
+/************ Account Management ****************/
+
+#acctMangetitle {
+
+font-size: 1.5em;
+text-align: center;
+margin-bottom: 60px;
+
+}
+
+#manageLinksContainer {
+  border: 2px black, solid;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#welcome {
+  text-align: center;
+  margin-top: 30px;
+}
 
 
+#manageLinksContainer h3 {
+  margin-top: 25px;
+
+}
+
+#manageLinksContainer p {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#manageLinksContainer hr {
+  background-color: rgb(161, 26, 26);
+  height: 2px;
+  border: none;
+  max-width: 80%;
+}
+
+/*********** Update Info ****************/
+#updateInfoHead {
+  font-size: 1.5em;
+}
+
+#updateInfoField, #updatePwd {
+  border: 2px, rgb(161, 26, 26), solid;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 60vh;
+  margin: auto;
+ 
+
+}
+
+legend {
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#updateInfoField{
+  margin-top: 30px;
+}
+
+#updateInfoField label{
+  padding-bottom: 15px;
+}
+#pwdRegEx {
+  margin-top: 10px;
+  font-size: smaller;
+}
+
+
+
+
+
+
+#update-acctBtn, #updatePwdBtn {
+  margin-top: 40px;
+}
 
 /***********larger screens > 768 ****************/
 @media only screen and (min-width: 768px) {
@@ -595,6 +673,15 @@ p {
   height: auto;
   margin: auto;
 }
+
+/************ Account Management ****************/
+#manageLinksContainer {
+  max-width: 60vw;
+  max-width: auto;
+  margin: auto;
+  
+}
+
 /******* Change Box Model ***************/
 *,
 *:before,

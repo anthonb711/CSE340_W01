@@ -81,8 +81,6 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
-
-
 /* **************************************
 * Build the inventory Detail view HTML
 * ************************************ */
@@ -109,7 +107,7 @@ Util.buildDetailCard = async function(data){
 
 
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+    grid += '<p class="notice">Sorry, no matching account could be found.</p>'
   }
   return grid
 }
