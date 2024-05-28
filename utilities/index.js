@@ -86,8 +86,9 @@ Util.buildClassificationGrid = async function(data){
 * ************************************ */
 Util.buildDetailCard = async function(data){
   let grid
-  if(data.length > 0){
-    const vehicle = data[0];
+  const dataStringified = JSON.stringify(data)
+  if(dataStringified.length > 0){
+    const vehicle = data;
     grid = '<div id="detailContainer"> <img id="detailImg" src="'
       + vehicle.inv_image
       + '" alt="Image of '
@@ -107,7 +108,7 @@ Util.buildDetailCard = async function(data){
 
 
   } else { 
-    grid += '<p class="notice">Sorry, no matching account could be found.</p>'
+    grid += '<p class="notice">Sorry, no matching vehicle could be found could be found.</p>'
   }
   return grid
 }

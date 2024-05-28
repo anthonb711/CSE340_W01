@@ -34,16 +34,17 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByDetailId = async function (req, res, next) {
   try {
     const detail_id = req.params.detailId
-    const data = await invModel.getInventoryByDetailId(detail_id)
+    const data = await inventoryModel.getInventoryByDetailId(detail_id)
     const grid = await Util.buildDetailCard(data)
+    
     let nav = await Util.getNav()
-    const titleString = data[0].inv_year + ' ' + data[0].inv_make + ' ' + data[0].inv_model
+    const titleString = data.inv_year + ' ' + data.inv_make + ' ' + data.inv_model
 
       res.render("./inventory/detail", {
       title: titleString,
         nav,
-       grid,
-       errors: null,
+        grid,
+        errors: null,
       })
     }catch (error) {
       console.log(error);
