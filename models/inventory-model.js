@@ -1,7 +1,7 @@
 const pool = require ("../database/");
 
 /* *******************************
- * Get all calssification data
+ * GET ALL INVENTORY DATA
  ****************************** */
 async function getClassifications() {
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
