@@ -1,3 +1,5 @@
+SELECT * FROM public.account;
+
 /* Cart Model Testing QUERIES */
 
 	-- GET ALL CART DATA
@@ -11,11 +13,11 @@ FROM public.cart AS c
 WHERE i.inv_id = 8;
 
 	-- GET CART BY ACCOUNT ID
-SELECT * 
+SELECT *
 FROM public.cart AS c
-	JOIN public.account AS a
-    ON c.account_id = a.account_id
-WHERE a.account_id = 16;
+	JOIN public.inventory AS i
+      ON c.inv_id = i.inv_id
+WHERE c.account_id = 17;
 
 	-- GET TOTAL PRICE BY ACCOUNT ID
 SELECT  SUM(total_price) AS total_sum
