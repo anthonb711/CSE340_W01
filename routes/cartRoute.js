@@ -5,6 +5,7 @@ const cartController = require("../controllers/cartController");
 const Util = require("../utilities");
 
 
-router.get("/", Util.handleErrors(cartController.buildCart));
+router.get("/",
+Util.checkLogin,  Util.handleErrors(cartController.buildCart));
 
 module.exports = router;
