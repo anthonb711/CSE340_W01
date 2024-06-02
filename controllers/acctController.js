@@ -67,15 +67,13 @@ const buildAcctManagement = async (req, res, next) => {
     let nav = await Util.getNav();
     const acctId = res.locals.accountData.account_id; 
     const welcomeBasic = res.locals.accountData.account_firstname;
-    let grid = "";
 
     res.render("account/management", {
       title: "Account Management",
       nav,
       errors: null,
       welcomeBasic,
-      acctId,
-      grid
+      acctId
     })
 
   } catch (error) {
@@ -271,7 +269,7 @@ async function acctLogin (req, res) {
   let nav = await Util.getNav();
   const { account_email, account_password } = req.body;
   const accountData = await accountModel.getAcctByEmail(account_email)
-  console.log(accountData)
+
   if(!accountData) { // check for email if not found then... 
     req.flash("notice", "Please check your credentials and try again.");
     res.status(400).render("account/login", {

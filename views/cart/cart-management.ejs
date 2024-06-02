@@ -1,0 +1,37 @@
+<% if(title) { %>
+  <h1 id="CartMangetitle">
+    <%= title %>
+  </h1>
+  <%} else { res.redirect('/'); } %>
+
+  <%- messages() %>
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error=> { %>
+        <li>
+          <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+  <% } %>
+
+    <div id="manageLinksContainer">
+    <h2 id="welcome"> Welcome <%- welcomeBasic  %> </h2><hr>
+    
+      <h3>Select Client Cart</h3>
+      <form> <%- clientSelect%> </form><br><br>
+    
+
+    <div id="tableContainer">
+      <table id="inventoryDisplay">
+        <!--Table contents to be injected -->
+      </table> 
+    </div><br><br>
+    </div>
+    
+    <noscript>
+      JavaScript must be enabled to use this page.
+    </noscript>
+
+
+   <script src="../../js/cart.js"></script>

@@ -1,0 +1,26 @@
+<% if(title) { %>
+  <h1 class="cart-title">
+    <%= title %>
+  </h1>
+  <%} else { res.redirect('/'); } %>
+
+  <%# userName %>
+
+  <section class="cart">
+    <ul class="cart-list">
+      <%- cartList %>
+    </ul>
+    <div id="totalContainer">
+    <span class="cart-total"> <%- cartTotal %> </span>
+    </div>
+  </section>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error=> { %><li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
