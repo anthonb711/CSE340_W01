@@ -2,6 +2,7 @@
 const express = require("express");
 const router = new express.Router();
 const cartController = require("../controllers/cartController");
+const cartValidate = require("../utilities/cart-validation")
 const Util = require("../utilities");
 
 
@@ -22,5 +23,10 @@ router.post("/:cartId/:acctId",
   Util.checkLogin, Util.checkAcctType,
   Util.handleErrors(cartController.removeFromManagedCart)
 )
+
+router.post("/add-to-cart/", 
+  cartValidate.cartRules(),
+  cartValidate.checkCartData, Util.handleErrors(cartController.addToCart));
+
 
 module.exports = router;

@@ -7,6 +7,7 @@
  // Get a list of cart items in client's cart based on client account_id 
  let cartList = document.querySelector("#clientList")
  cartList.addEventListener("change", function () { 
+
   let account_id = cartList.value 
   let cartIdURL = "/cart/getCList/"+ account_id 
 
@@ -21,7 +22,7 @@
    buildClientList(data); 
   }) 
   .catch(function (error) { 
-   console.log('There was a problem: ', error.message) 
+   console.error('There was a problem: ', error.message) 
   }) 
  })
 

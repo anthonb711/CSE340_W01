@@ -37,7 +37,7 @@ try {
     WHERE account_id = $1`,
   [account_id]
   )
-  return 'Cart Total: $' + new Intl.NumberFormat ('en-US').format(data.rows[0].total_sum)
+  return 'Cart Total:$' + new Intl.NumberFormat ('en-US').format(data.rows[0].total_sum)
 } catch(error) {
   console.error("cart/model get cart total by account ID error" + error)
   };
@@ -63,7 +63,6 @@ try {
 
 /* *******************************
  * ADD INVENTORY TO CART
- * //TODO: check if inv_id exisits in a cart
  ****************************** */
 async function addInventoryToCart(account_id, inv_id, quantity, added_date, 
   status, total_price ) {

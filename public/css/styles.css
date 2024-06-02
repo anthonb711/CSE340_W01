@@ -228,6 +228,25 @@ footer {
    font-size: smaller;
 }
 
+#btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+}
+.addToCartBtn {
+  text-align: center;
+}
+ #btnContainer button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 15px;
+  border: rgb(161, 26, 26) solid;
+  font-weight: bold;
+ }
+
 /*********** Account Login/Register ****************/
 #loginForm {
 max-width: 100vw;
@@ -538,11 +557,6 @@ legend {
  
 }
 
-#removeIcon {
-  
-
-}
-
 /***********larger screens > 768 ****************/
 @media only screen and (min-width: 768px) {
    body {
@@ -673,6 +687,8 @@ legend {
 .lightCard{
   background-color: white;
 }
+
+
 /*********** Account Login ****************/
 #loginForm, #registerForm {
   max-width: 60vw;
@@ -817,7 +833,7 @@ legend {
 }
 
 
-/***********larger screens > 768 ****************/
+/***********larger screens > 1200px ****************/
 
 @media only screen and (min-width: 1200px) {
 .cart-card {
@@ -845,6 +861,8 @@ legend {
     text-align: right;
     font-size: 1.75em;
   }
+
+
 
 }
 

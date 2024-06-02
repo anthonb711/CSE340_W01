@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken")
 const { configDotenv } = require("dotenv");
 const inventoryModel = require("../models/inventory-model");
 const Util = require("../utilities/");
@@ -34,9 +35,10 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByDetailId = async function (req, res, next) {
   try {
     const detail_id = req.params.detailId
+   const timestamp = Date.now();
     const data = await inventoryModel.getInventoryByDetailId(detail_id)
     const grid = await Util.buildDetailCard(data)
-    
+    const account_id = jwt.account_id;
     let nav = await Util.getNav()
     const titleString = data.inv_year + ' ' + data.inv_make + ' ' + data.inv_model
 
@@ -45,9 +47,12 @@ invCont.buildByDetailId = async function (req, res, next) {
         nav,
         grid,
         errors: null,
+        inv_id: detail_id,
+        account_id,
+        timestamp,
+        inv_price: data.inv_price
       })
     }catch (error) {
-      console.log(error);
       error.status = 500;
       error.message = "Not available at this time."
       next(error);

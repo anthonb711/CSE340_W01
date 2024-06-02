@@ -43,10 +43,11 @@ const getCartJSON = async (req, res, next) => {
   const account_id = parseInt(req.params.acctId)
 
   const cartData = await cartModel.getCartByAcctId(account_id)
-  if (cartData[0].account_id) {
+
+  if (cartData != []) {
     return res.json(cartData)
   } else {
-    next(new Error("No data returned"))
+    next()
   }
 }
 
@@ -126,10 +127,27 @@ const removeFromManagedCart = async (req, res, next) => {
   }
 }
 
+
+/* *******************************
+ * ADD TO CART
+ ****************************** */
+const addToCart = async (req, res, next) => {
+
+  const nav = Util.getNav();
+  const { account_id, inv_id, quantity, added_date, status, total_price } = req.body
+
+  const addCartResult = await cartModel.addToCart( 
+          account_id, inv_id, quantity, added_date, status, total_price )
+
+const invDetails = await invModel.getInventoryByDetailId(inv_id);
+ 
+}
+
 module.exports = {
   buildCart,
   removeFromCart,
   buildManagement,
   getCartJSON,
-  removeFromManagedCart
+  removeFromManagedCart,
+  addToCart
 }

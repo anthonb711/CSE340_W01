@@ -107,8 +107,9 @@ Util.buildDetailCard = async function(data){
     grid += '<div id="miles" class="lightCard"><span><strong>Miles: </strong>'
          + new Intl.NumberFormat ('en-US').format(vehicle.inv_miles) + '</span></div>'
     grid += '</div>'
-
-
+    grid += `<div id="btnContainer"><form action="/cart/add-to-art/" method="post" 
+            class="addToCartBtn"><button>Add to Cart</button></form></div>`
+   
   } else { 
     grid += '<p class="notice">Sorry, no matching vehicle could be found could be found.</p>'
   }
