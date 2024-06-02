@@ -12,15 +12,18 @@ const acctModel = require("../models/account-model");
 const buildCart = async (req, res, next) => {
   try {
     let nav = await Util.getNav();
-    const data = await cartModel.getCartByAcctId(res.locals.accountData.account_id)
+    let account_id = res.locals.accountData.account_id;
+    const data = await cartModel.getCartByAcctId(account_id)
     const cartList = await Util.buildCartList(data);
     const userName = Util.makeUsername(res.locals.accountData);
+    const cartTotal = await cartModel.getCartTotalByAccId(account_id)
     
     res.render("cart/user-cart", {
       title: userName + "'s Cart",
       nav,
       errors: null,
-      cartList
+      cartList,
+      cartTotal
       
     })
   }catch (error) {

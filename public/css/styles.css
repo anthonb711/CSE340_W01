@@ -807,6 +807,15 @@ legend {
   background-color: white;
 }
 
+#totalContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 
 /***********larger screens > 768 ****************/
 

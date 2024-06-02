@@ -37,7 +37,7 @@ try {
     WHERE account_id = $1`,
   [account_id]
   )
-  return data.rows[0]
+  return 'Cart Total: $' + new Intl.NumberFormat ('en-US').format(data.rows[0].total_sum)
 } catch(error) {
   console.error("cart/model get cart total by account ID error" + error)
   };
