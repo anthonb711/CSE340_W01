@@ -37,7 +37,7 @@ WHERE inv_id = 2
 RETURNING *
 
 	-- REMOVE CART ENTITY
-DELETE FROM public.cart WHERE inv_id = 2;
+DELETE FROM public.cart WHERE cart_id = 2;
 
 	-- DELETE USER CART
 DELETE FROM public.cart WHERE account_id = 17;

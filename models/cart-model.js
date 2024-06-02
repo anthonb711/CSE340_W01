@@ -100,10 +100,10 @@ async function updateStatusByInvId(status, inv_id) {
 /* *******************************
  * REMOVE CART ENTITY
  ****************************** */
-async function removeCartEntity(inv_id) {
+async function removeCartEntity(cart_id) {
   try {
-    const sql = "DELETE FROM public.cart WHERE inv_id = $1";
-    const data = await pool.query(sql, [inv_id])
+    const sql = "DELETE FROM public.cart WHERE cart_id = $1";
+    const data = await pool.query(sql, [cart_id])
   return data
   } catch (error) {
     new Error("Delete Cart Entity Error");

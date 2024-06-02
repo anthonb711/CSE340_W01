@@ -793,11 +793,22 @@ legend {
   font-size: 1em;
 }
 
+.cart-card__removeBtn {
+  grid-row: 3;
+  grid-column: 3;
+  display: inline;
+  text-align: right;
+  padding: 0;
+  background-color: white;
+  border: none;
+}
+#removeFromCart {
+  border: none;
+  background-color: white;
+}
 
 
-
-
-/***********larger screens > 1200px ****************/
+/***********larger screens > 768 ****************/
 
 @media only screen and (min-width: 1200px) {
 .cart-card {

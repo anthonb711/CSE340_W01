@@ -57,6 +57,21 @@ async function getAcctById(account_id){
  }
 }
 
+/* **********************
+ *   GET ALL CLIENTS
+ * ********************* */
+async function getClients(){
+ try {
+  const result = await pool.query(
+      `SELECT account_id, account_firstname, account_lastname, 
+      account_email FROM account`,[])
+    return result;
+  
+ } catch (error) {
+    return new Error("Error getting Client List")
+ }
+}
+
 /* *******************************
  * UPDATE INFO
  ****************************** */
@@ -94,6 +109,7 @@ module.exports = {
   checkExistingEmail,
   getAcctByEmail,
   getAcctById,
+  getClients,
   updateInfo,
   updatePwd
 };

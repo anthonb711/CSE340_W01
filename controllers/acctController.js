@@ -67,15 +67,13 @@ const buildAcctManagement = async (req, res, next) => {
     let nav = await Util.getNav();
     const acctId = res.locals.accountData.account_id; 
     const welcomeBasic = res.locals.accountData.account_firstname;
-    let grid = "";
 
     res.render("account/management", {
       title: "Account Management",
       nav,
       errors: null,
       welcomeBasic,
-      acctId,
-      grid
+      acctId
     })
 
   } catch (error) {
